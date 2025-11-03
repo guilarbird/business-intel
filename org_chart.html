@@ -1,0 +1,430 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red70\green137\blue204;\red23\green24\blue24;\red140\green211\blue254;
+\red202\green202\blue202;\red109\green109\blue109;\red194\green126\blue101;\red109\green115\blue120;\red212\green212\blue212;
+\red113\green192\blue131;\red167\green197\blue152;\red183\green111\blue247;\red246\green124\blue48;\red54\green192\blue160;
+\red163\green79\blue131;}
+{\*\expandedcolortbl;;\cssrgb\c33725\c61176\c83922;\cssrgb\c11765\c12157\c12549;\cssrgb\c61176\c86275\c99608;
+\cssrgb\c83137\c83137\c83137;\cssrgb\c50196\c50196\c50196;\cssrgb\c80784\c56863\c47059;\cssrgb\c50196\c52549\c54510;\cssrgb\c86275\c86275\c86275;
+\cssrgb\c50588\c78824\c58431;\cssrgb\c70980\c80784\c65882;\cssrgb\c77255\c54118\c97647;\cssrgb\c98039\c56471\c24314;\cssrgb\c23922\c78824\c69020;
+\cssrgb\c70588\c40000\c58431;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 <!DOCTYPE\cf4 \strokec4  html\cf2 \strokec2 >\cf5 \cb1 \strokec5 \
+\cf6 \cb3 \strokec6 <\cf2 \strokec2 html\cf5 \strokec5  \cf4 \strokec4 lang\cf6 \strokec6 =\cf7 \strokec7 "en"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "h-full"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cf6 \cb3 \strokec6 <\cf2 \strokec2 head\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 <\cf2 \strokec2 meta\cf5 \strokec5  \cf4 \strokec4 charset\cf6 \strokec6 =\cf7 \strokec7 "UTF-8"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 <\cf2 \strokec2 meta\cf5 \strokec5  \cf4 \strokec4 name\cf6 \strokec6 =\cf7 \strokec7 "viewport"\cf5 \strokec5  \cf4 \strokec4 content\cf6 \strokec6 =\cf7 \strokec7 "width=device-width, initial-scale=1.0"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 <\cf2 \strokec2 title\cf6 \strokec6 >\cf5 \strokec5 Team Responsibilities Diagram\cf6 \strokec6 </\cf2 \strokec2 title\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3     \cf8 \strokec8 <!-- Load D3.js -->\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 <\cf2 \strokec2 script\cf5 \strokec5  \cf4 \strokec4 src\cf6 \strokec6 =\cf7 \strokec7 "https://d3js.org/d3.v7.min.js"\cf6 \strokec6 ></\cf2 \strokec2 script\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3     \cf8 \strokec8 <!-- Load Tailwind CSS -->\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 <\cf2 \strokec2 script\cf5 \strokec5  \cf4 \strokec4 src\cf6 \strokec6 =\cf7 \strokec7 "https://cdn.tailwindcss.com"\cf6 \strokec6 ></\cf2 \strokec2 script\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 <\cf2 \strokec2 style\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3         \cf8 \strokec8 /* Use Inter font */\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 body\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 font-family:\cf5 \strokec5  \cf10 \strokec10 'Inter'\cf9 \strokec9 ,\cf5 \strokec5  \cf7 \strokec7 sans-serif\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 background-color:\cf5 \strokec5  #f1f5f9\cf9 \strokec9 ;\cf5 \strokec5  \cf8 \strokec8 /* slate-100 */\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 /* Custom styles for the D3 chart */\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 .node\cf5 \strokec5  \cf2 \strokec2 circle\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 cursor:\cf5 \strokec5  \cf7 \strokec7 pointer\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 transition:\cf5 \strokec5  \cf7 \strokec7 all\cf5 \strokec5  \cf11 \strokec11 0.2s\cf5 \strokec5  \cf7 \strokec7 ease-out\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf2 \strokec2 .node:hover\cf5 \strokec5  \cf2 \strokec2 circle\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 stroke-width:\cf5 \strokec5  \cf11 \strokec11 3px\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf2 \strokec2 .node\cf5 \strokec5  \cf2 \strokec2 text\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 font-size:\cf5 \strokec5  \cf11 \strokec11 11px\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 font-weight:\cf5 \strokec5  \cf11 \strokec11 500\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 fill:\cf5 \strokec5  #334155\cf9 \strokec9 ;\cf5 \strokec5  \cf8 \strokec8 /* slate-700 */\cf5 \cb1 \strokec5 \
+\cb3             \cf8 \strokec8 /* Add a subtle shadow for text readability */\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 paint-order:\cf5 \strokec5  \cf7 \strokec7 stroke\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 stroke:\cf5 \strokec5  #f8fafc\cf9 \strokec9 ;\cf5 \strokec5  \cf8 \strokec8 /* slate-50 */\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 stroke-width:\cf5 \strokec5  \cf11 \strokec11 3px\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 stroke-linecap:\cf5 \strokec5  \cf7 \strokec7 butt\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 stroke-linejoin:\cf5 \strokec5  \cf7 \strokec7 miter\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf2 \strokec2 .link\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 fill:\cf5 \strokec5  \cf7 \strokec7 none\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 stroke:\cf5 \strokec5  #94a3b8\cf9 \strokec9 ;\cf5 \strokec5  \cf8 \strokec8 /* slate-400 */\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 stroke-opacity:\cf5 \strokec5  \cf11 \strokec11 0.6\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 stroke-width:\cf5 \strokec5  \cf11 \strokec11 1.5px\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 /* Tooltip style */\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 .tooltip\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 position:\cf5 \strokec5  \cf7 \strokec7 absolute\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 text-align:\cf5 \strokec5  \cf7 \strokec7 center\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 padding:\cf5 \strokec5  \cf11 \strokec11 8px\cf5 \strokec5  \cf11 \strokec11 12px\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 font-size:\cf5 \strokec5  \cf11 \strokec11 12px\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 background:\cf5 \strokec5  #1e293b\cf9 \strokec9 ;\cf5 \strokec5  \cf8 \strokec8 /* slate-800 */\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 color:\cf5 \strokec5  #f1f5f9\cf9 \strokec9 ;\cf5 \strokec5  \cf8 \strokec8 /* slate-100 */\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 border-radius:\cf5 \strokec5  \cf11 \strokec11 6px\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 pointer-events:\cf5 \strokec5  \cf7 \strokec7 none\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 opacity:\cf5 \strokec5  \cf11 \strokec11 0\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 transition:\cf5 \strokec5  \cf7 \strokec7 opacity\cf5 \strokec5  \cf11 \strokec11 0.2s\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 max-width:\cf5 \strokec5  \cf11 \strokec11 300px\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf4 \strokec4 box-shadow:\cf5 \strokec5  \cf11 \strokec11 0\cf5 \strokec5  \cf11 \strokec11 4px\cf5 \strokec5  \cf11 \strokec11 6px\cf5 \strokec5  \cf11 \strokec11 -1px\cf5 \strokec5  \cf7 \strokec7 rgb(\cf11 \strokec11 0\cf5 \strokec5  \cf11 \strokec11 0\cf5 \strokec5  \cf11 \strokec11 0\cf5 \strokec5  \cf9 \strokec9 /\cf5 \strokec5  \cf11 \strokec11 0.1\cf7 \strokec7 )\cf9 \strokec9 ,\cf5 \strokec5  \cf11 \strokec11 0\cf5 \strokec5  \cf11 \strokec11 2px\cf5 \strokec5  \cf11 \strokec11 4px\cf5 \strokec5  \cf11 \strokec11 -2px\cf5 \strokec5  \cf7 \strokec7 rgb(\cf11 \strokec11 0\cf5 \strokec5  \cf11 \strokec11 0\cf5 \strokec5  \cf11 \strokec11 0\cf5 \strokec5  \cf9 \strokec9 /\cf5 \strokec5  \cf11 \strokec11 0.1\cf7 \strokec7 )\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 </\cf2 \strokec2 style\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cf6 \cb3 \strokec6 </\cf2 \strokec2 head\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cf6 \cb3 \strokec6 <\cf2 \strokec2 body\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "h-full flex items-center justify-center p-4 md:p-8 antialiased"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\
+\cb3     \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "w-full max-w-7xl h-[80vh] bg-white rounded-lg shadow-xl p-4 overflow-auto"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3         \cf6 \strokec6 <\cf2 \strokec2 svg\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "org-chart"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "w-full h-full min-w-[800px] min-h-[600px]"\cf6 \strokec6 ></\cf2 \strokec2 svg\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\
+\cb3     \cf8 \strokec8 <!-- Tooltip element -->\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "tooltip"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "tooltip"\cf6 \strokec6 ></\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\
+\cb3     \cf8 \strokec8 <!-- Gemini Modal -->\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "gemini-modal"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 z-50 hidden"\cf5 \strokec5  \cf4 \strokec4 style\cf6 \strokec6 =\cf7 \strokec7 "font-family: 'Inter', sans-serif;"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3         \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "bg-white rounded-lg shadow-xl w-full max-w-lg p-6 relative"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3             \cf6 \strokec6 <\cf2 \strokec2 button\cf5 \strokec5  \cf4 \strokec4 onclick\cf6 \strokec6 =\cf7 \strokec7 "closeModal()"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "absolute top-3 right-3 text-gray-400 hover:text-gray-600 p-1 rounded-full"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                 \cf6 \strokec6 <\cf2 \strokec2 svg\cf5 \strokec5  \cf4 \strokec4 xmlns\cf6 \strokec6 =\cf7 \strokec7 "http://www.w3.org/2000/svg"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "h-6 w-6"\cf5 \strokec5  \cf4 \strokec4 fill\cf6 \strokec6 =\cf7 \strokec7 "none"\cf5 \strokec5  \cf4 \strokec4 viewBox\cf6 \strokec6 =\cf7 \strokec7 "0 0 24 24"\cf5 \strokec5  \cf4 \strokec4 stroke\cf6 \strokec6 =\cf7 \strokec7 "currentColor"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                     \cf6 \strokec6 <\cf2 \strokec2 path\cf5 \strokec5  \cf4 \strokec4 stroke-linecap\cf6 \strokec6 =\cf7 \strokec7 "round"\cf5 \strokec5  \cf4 \strokec4 stroke-linejoin\cf6 \strokec6 =\cf7 \strokec7 "round"\cf5 \strokec5  \cf4 \strokec4 stroke-width\cf6 \strokec6 =\cf7 \strokec7 "2"\cf5 \strokec5  \cf4 \strokec4 d\cf6 \strokec6 =\cf7 \strokec7 "M6 18L18 6M6 6l12 12"\cf5 \strokec5  \cf6 \strokec6 />\cf5 \cb1 \strokec5 \
+\cb3                 \cf6 \strokec6 </\cf2 \strokec2 svg\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3             \cf6 \strokec6 </\cf2 \strokec2 button\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3             \cf6 \strokec6 <\cf2 \strokec2 h2\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-lg font-bold text-gray-800 mb-4"\cf6 \strokec6 >\cf5 \strokec5 \uc0\u10024  AI Analysis\cf6 \strokec6 </\cf2 \strokec2 h2\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3             \cb1 \
+\cb3             \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "gemini-loading"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-center py-4 hidden"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                 \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "flex justify-center items-center"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                     \cf6 \strokec6 <\cf2 \strokec2 svg\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "animate-spin -ml-1 mr-3 h-5 w-5 text-blue-600"\cf5 \strokec5  \cf4 \strokec4 xmlns\cf6 \strokec6 =\cf7 \strokec7 "http://www.w3.org/2000/svg"\cf5 \strokec5  \cf4 \strokec4 fill\cf6 \strokec6 =\cf7 \strokec7 "none"\cf5 \strokec5  \cf4 \strokec4 viewBox\cf6 \strokec6 =\cf7 \strokec7 "0 0 24 24"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                         \cf6 \strokec6 <\cf2 \strokec2 circle\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "opacity-25"\cf5 \strokec5  \cf4 \strokec4 cx\cf6 \strokec6 =\cf7 \strokec7 "12"\cf5 \strokec5  \cf4 \strokec4 cy\cf6 \strokec6 =\cf7 \strokec7 "12"\cf5 \strokec5  \cf4 \strokec4 r\cf6 \strokec6 =\cf7 \strokec7 "10"\cf5 \strokec5  \cf4 \strokec4 stroke\cf6 \strokec6 =\cf7 \strokec7 "currentColor"\cf5 \strokec5  \cf4 \strokec4 stroke-width\cf6 \strokec6 =\cf7 \strokec7 "4"\cf6 \strokec6 ></\cf2 \strokec2 circle\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                         \cf6 \strokec6 <\cf2 \strokec2 path\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "opacity-75"\cf5 \strokec5  \cf4 \strokec4 fill\cf6 \strokec6 =\cf7 \strokec7 "currentColor"\cf5 \strokec5  \cf4 \strokec4 d\cf6 \strokec6 =\cf7 \strokec7 "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"\cf6 \strokec6 ></\cf2 \strokec2 path\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                     \cf6 \strokec6 </\cf2 \strokec2 svg\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                     \cf6 \strokec6 <\cf2 \strokec2 p\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-gray-600"\cf6 \strokec6 >\cf5 \strokec5 Analyzing... Please wait.\cf6 \strokec6 </\cf2 \strokec2 p\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                 \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3             \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\
+\cb3             \cf6 \strokec6 <\cf2 \strokec2 div\cf5 \strokec5  \cf4 \strokec4 id\cf6 \strokec6 =\cf7 \strokec7 "gemini-content"\cf5 \strokec5  \cf4 \strokec4 class\cf6 \strokec6 =\cf7 \strokec7 "text-gray-700 max-h-[60vh] overflow-y-auto prose prose-sm"\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3                 \cf8 \strokec8 <!-- Response will be injected here -->\cf5 \cb1 \strokec5 \
+\cb3             \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3         \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3     \cf6 \strokec6 </\cf2 \strokec2 div\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\
+\
+\cb3     \cf6 \strokec6 <\cf2 \strokec2 script\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cb3         \cf8 \strokec8 // --- Modal Controls ---\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  modal \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'gemini-modal'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  modalContent \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'gemini-content'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  modalLoading \cf9 \strokec9 =\cf5 \strokec5  document\cf9 \strokec9 .\cf5 \strokec5 getElementById\cf9 \strokec9 (\cf10 \strokec10 'gemini-loading'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf12 \strokec12 function\cf5 \strokec5  openModal\cf9 \strokec9 ()\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             modalContent\cf9 \strokec9 .\cf5 \strokec5 innerHTML \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 ''\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             modalLoading\cf9 \strokec9 .\cf5 \strokec5 style\cf9 \strokec9 .\cf5 \strokec5 display \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 'block'\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             modal\cf9 \strokec9 .\cf5 \strokec5 style\cf9 \strokec9 .\cf5 \strokec5 display \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 'flex'\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 function\cf5 \strokec5  closeModal\cf9 \strokec9 ()\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             modal\cf9 \strokec9 .\cf5 \strokec5 style\cf9 \strokec9 .\cf5 \strokec5 display \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 'none'\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3         \cf8 \strokec8 // Close modal if user clicks outside of the content\cf5 \cb1 \strokec5 \
+\cb3         window\cf9 \strokec9 .\cf5 \strokec5 onclick \cf9 \strokec9 =\cf5 \strokec5  \cf12 \strokec12 function\cf9 \strokec9 (\cf5 \strokec5 event\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 event\cf9 \strokec9 .\cf5 \strokec5 target \cf9 \strokec9 ==\cf5 \strokec5  modal\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 closeModal\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 // --- Gemini API ---\cf5 \cb1 \strokec5 \
+\cb3         \cf8 \strokec8 /**\cf5 \cb1 \strokec5 \
+\cf8 \cb3 \strokec8          * Calls the Gemini API with exponential backoff.\cf5 \cb1 \strokec5 \
+\cf8 \cb3 \strokec8          * @param \{string\} userQuery The user's prompt.\cf5 \cb1 \strokec5 \
+\cf8 \cb3 \strokec8          * @param \{string\} systemPrompt The system instruction.\cf5 \cb1 \strokec5 \
+\cf8 \cb3 \strokec8          * @returns \{Promise<string>\} The generated text.\cf5 \cb1 \strokec5 \
+\cf8 \cb3 \strokec8          */\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 async\cf5 \strokec5  \cf12 \strokec12 function\cf5 \strokec5  callGeminiAPI\cf9 \strokec9 (\cf5 \strokec5 userQuery\cf9 \strokec9 ,\cf5 \strokec5  systemPrompt\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf12 \strokec12 const\cf5 \strokec5  apiKey \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 ""\cf9 \strokec9 ;\cf5 \strokec5  \cf8 \strokec8 // API key is handled by the environment\cf5 \cb1 \strokec5 \
+\cb3             \cf12 \strokec12 const\cf5 \strokec5  apiUrl \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 `httpshttps://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=\cf9 \strokec9 $\{\cf5 \strokec5 apiKey\cf9 \strokec9 \}\cf10 \strokec10 `\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\
+\cb3             \cf12 \strokec12 const\cf5 \strokec5  payload \cf9 \strokec9 =\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 contents\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\{\cf5 \strokec5  parts\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\{\cf5 \strokec5  text\cf9 \strokec9 :\cf5 \strokec5  userQuery \cf9 \strokec9 \}]\cf5 \strokec5  \cf9 \strokec9 \}],\cf5 \cb1 \strokec5 \
+\cb3                 systemInstruction\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                     parts\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 [\{\cf5 \strokec5  text\cf9 \strokec9 :\cf5 \strokec5  systemPrompt \cf9 \strokec9 \}]\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \};\cf5 \cb1 \strokec5 \
+\
+\cb3             \cf12 \strokec12 let\cf5 \strokec5  response\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf12 \strokec12 let\cf5 \strokec5  retries \cf9 \strokec9 =\cf5 \strokec5  \cf13 \strokec13 0\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf12 \strokec12 const\cf5 \strokec5  maxRetries \cf9 \strokec9 =\cf5 \strokec5  \cf13 \strokec13 5\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf12 \strokec12 let\cf5 \strokec5  delay \cf9 \strokec9 =\cf5 \strokec5  \cf13 \strokec13 1000\cf9 \strokec9 ;\cf5 \strokec5  \cf8 \strokec8 // 1 second\cf5 \cb1 \strokec5 \
+\
+\cb3             \cf12 \strokec12 while\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 retries \cf9 \strokec9 <\cf5 \strokec5  maxRetries\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 \cf12 \strokec12 try\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                     response \cf9 \strokec9 =\cf5 \strokec5  \cf12 \strokec12 await\cf5 \strokec5  fetch\cf9 \strokec9 (\cf5 \strokec5 apiUrl\cf9 \strokec9 ,\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                         method\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 'POST'\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                         headers\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  \cf10 \strokec10 'Content-Type'\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 'application/json'\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
+\cb3                         body\cf9 \strokec9 :\cf5 \strokec5  \cf14 \strokec14 JSON\cf9 \strokec9 .\cf5 \strokec5 stringify\cf9 \strokec9 (\cf5 \strokec5 payload\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3                     \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
+\
+\cb3                     \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 response\cf9 \strokec9 .\cf5 \strokec5 ok\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                         \cf12 \strokec12 const\cf5 \strokec5  result \cf9 \strokec9 =\cf5 \strokec5  \cf12 \strokec12 await\cf5 \strokec5  response\cf9 \strokec9 .\cf5 \strokec5 json\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
+\cb3                         \cf12 \strokec12 const\cf5 \strokec5  candidate \cf9 \strokec9 =\cf5 \strokec5  result\cf9 \strokec9 .\cf5 \strokec5 candidates\cf9 \strokec9 ?.[\cf13 \strokec13 0\cf9 \strokec9 ];\cf5 \cb1 \strokec5 \
+\cb3                         \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 candidate \cf9 \strokec9 &&\cf5 \strokec5  candidate\cf9 \strokec9 .\cf5 \strokec5 content\cf9 \strokec9 ?.\cf5 \strokec5 parts\cf9 \strokec9 ?.[\cf13 \strokec13 0\cf9 \strokec9 ]?.\cf5 \strokec5 text\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                             \cf12 \strokec12 return\cf5 \strokec5  candidate\cf9 \strokec9 .\cf5 \strokec5 content\cf9 \strokec9 .\cf5 \strokec5 parts\cf9 \strokec9 [\cf13 \strokec13 0\cf9 \strokec9 ].\cf5 \strokec5 text\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3                         \cf9 \strokec9 \}\cf5 \strokec5  \cf12 \strokec12 else\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                             \cf12 \strokec12 throw\cf5 \strokec5  \cf12 \strokec12 new\cf5 \strokec5  \cf14 \strokec14 Error\cf9 \strokec9 (\cf10 \strokec10 "Invalid API response structure."\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3                         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3                     \cf9 \strokec9 \}\cf5 \strokec5  \cf12 \strokec12 else\cf5 \strokec5  \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 response\cf9 \strokec9 .\cf5 \strokec5 status \cf9 \strokec9 ===\cf5 \strokec5  \cf13 \strokec13 429\cf5 \strokec5  \cf9 \strokec9 ||\cf5 \strokec5  response\cf9 \strokec9 .\cf5 \strokec5 status \cf9 \strokec9 >=\cf5 \strokec5  \cf13 \strokec13 500\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                         \cf8 \strokec8 // Throttling or server error, wait and retry\cf5 \cb1 \strokec5 \
+\cb3                         console\cf9 \strokec9 .\cf5 \strokec5 warn\cf9 \strokec9 (\cf10 \strokec10 `Gemini API request failed with status \cf9 \strokec9 $\{\cf5 \strokec5 response\cf9 \strokec9 .\cf5 \strokec5 status\cf9 \strokec9 \}\cf10 \strokec10 . Retrying in \cf9 \strokec9 $\{\cf5 \strokec5 delay\cf9 \strokec9 \}\cf10 \strokec10 ms...`\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3                         \cf12 \strokec12 await\cf5 \strokec5  \cf12 \strokec12 new\cf5 \strokec5  \cf14 \strokec14 Promise\cf9 \strokec9 (\cf5 \strokec5 resolve \cf9 \strokec9 =>\cf5 \strokec5  setTimeout\cf9 \strokec9 (\cf5 \strokec5 resolve\cf9 \strokec9 ,\cf5 \strokec5  delay\cf9 \strokec9 ));\cf5 \cb1 \strokec5 \
+\cb3                         delay \cf9 \strokec9 *=\cf5 \strokec5  \cf13 \strokec13 2\cf9 \strokec9 ;\cf5 \strokec5  \cf8 \strokec8 // Exponential backoff\cf5 \cb1 \strokec5 \
+\cb3                         retries\cf9 \strokec9 ++;\cf5 \cb1 \strokec5 \
+\cb3                     \cf9 \strokec9 \}\cf5 \strokec5  \cf12 \strokec12 else\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                         \cf8 \strokec8 // Other client-side error\cf5 \cb1 \strokec5 \
+\cb3                         \cf12 \strokec12 const\cf5 \strokec5  errorResult \cf9 \strokec9 =\cf5 \strokec5  \cf12 \strokec12 await\cf5 \strokec5  response\cf9 \strokec9 .\cf5 \strokec5 json\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
+\cb3                         \cf12 \strokec12 throw\cf5 \strokec5  \cf12 \strokec12 new\cf5 \strokec5  \cf14 \strokec14 Error\cf9 \strokec9 (\cf10 \strokec10 `API request failed: \cf9 \strokec9 $\{\cf5 \strokec5 errorResult\cf9 \strokec9 .\cf5 \strokec5 error\cf9 \strokec9 ?.\cf5 \strokec5 message \cf9 \strokec9 ||\cf5 \strokec5  response\cf9 \strokec9 .\cf5 \strokec5 statusText\cf9 \strokec9 \}\cf10 \strokec10 `\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3                     \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 \}\cf5 \strokec5  \cf12 \strokec12 catch\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 error\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                     \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 retries \cf9 \strokec9 >=\cf5 \strokec5  maxRetries \cf9 \strokec9 -\cf5 \strokec5  \cf13 \strokec13 1\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                          \cf12 \strokec12 throw\cf5 \strokec5  error\cf9 \strokec9 ;\cf5 \strokec5  \cf8 \strokec8 // Throw error on last retry\cf5 \cb1 \strokec5 \
+\cb3                     \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3                     console\cf9 \strokec9 .\cf5 \strokec5 warn\cf9 \strokec9 (\cf10 \strokec10 `Gemini API request failed: \cf9 \strokec9 $\{\cf5 \strokec5 error\cf9 \strokec9 .\cf5 \strokec5 message\cf9 \strokec9 \}\cf10 \strokec10 . Retrying in \cf9 \strokec9 $\{\cf5 \strokec5 delay\cf9 \strokec9 \}\cf10 \strokec10 ms...`\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3                     \cf12 \strokec12 await\cf5 \strokec5  \cf12 \strokec12 new\cf5 \strokec5  \cf14 \strokec14 Promise\cf9 \strokec9 (\cf5 \strokec5 resolve \cf9 \strokec9 =>\cf5 \strokec5  setTimeout\cf9 \strokec9 (\cf5 \strokec5 resolve\cf9 \strokec9 ,\cf5 \strokec5  delay\cf9 \strokec9 ));\cf5 \cb1 \strokec5 \
+\cb3                     delay \cf9 \strokec9 *=\cf5 \strokec5  \cf13 \strokec13 2\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3                     retries\cf9 \strokec9 ++;\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3             \cf12 \strokec12 throw\cf5 \strokec5  \cf12 \strokec12 new\cf5 \strokec5  \cf14 \strokec14 Error\cf9 \strokec9 (\cf10 \strokec10 "Gemini API request failed after all retries."\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 /**\cf5 \cb1 \strokec5 \
+\cf8 \cb3 \strokec8          * Handles the click event on a D3 node to show Gemini analysis.\cf5 \cb1 \strokec5 \
+\cf8 \cb3 \strokec8          * @param \{object\} d The D3 node data.\cf5 \cb1 \strokec5 \
+\cf8 \cb3 \strokec8          */\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 async\cf5 \strokec5  \cf12 \strokec12 function\cf5 \strokec5  showGeminiAnalysis\cf9 \strokec9 (\cf5 \strokec5 d\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             openModal\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
+\cb3             \cb1 \
+\cb3             \cf12 \strokec12 const\cf5 \strokec5  systemPrompt \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 "You are a helpful HR and team operations analyst. Your goal is to provide concise, insightful summaries based on organizational data. Be professional and clear. Format your response with simple markdown (bolding, lists)."\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf12 \strokec12 let\cf5 \strokec5  userQuery \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 ""\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf12 \strokec12 let\cf5 \strokec5  nodeType \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 ""\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\
+\cb3             \cf12 \strokec12 try\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 d\cf9 \strokec9 .\cf5 \strokec5 depth \cf9 \strokec9 ===\cf5 \strokec5  \cf13 \strokec13 0\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  \cf8 \strokec8 // Root\cf5 \cb1 \strokec5 \
+\cb3                     nodeType \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 "Organization"\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3                     userQuery \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 `Provide a brief, 2-sentence overview of the entire organization '\cf9 \strokec9 $\{\cf5 \strokec5 d\cf9 \strokec9 .\cf5 \strokec5 data\cf9 \strokec9 .\cf5 \strokec5 name\cf9 \strokec9 \}\cf10 \strokec10 ' based on its team areas: \cf9 \strokec9 $\{\cf5 \strokec5 d\cf9 \strokec9 .\cf5 \strokec5 children\cf9 \strokec9 .\cf5 \strokec5 map\cf9 \strokec9 (\cf5 \strokec5 c \cf9 \strokec9 =>\cf5 \strokec5  c\cf9 \strokec9 .\cf5 \strokec5 data\cf9 \strokec9 .\cf5 \strokec5 name\cf9 \strokec9 ).\cf5 \strokec5 join\cf9 \strokec9 (\cf10 \strokec10 ', '\cf9 \strokec9 )\}\cf10 \strokec10 .`\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 \}\cf5 \strokec5  \cf12 \strokec12 else\cf5 \strokec5  \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 d\cf9 \strokec9 .\cf5 \strokec5 depth \cf9 \strokec9 ===\cf5 \strokec5  \cf13 \strokec13 1\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  \cf8 \strokec8 // Area\cf5 \cb1 \strokec5 \
+\cb3                     nodeType \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 "Team Area"\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3                     \cf12 \strokec12 const\cf5 \strokec5  responsibilities \cf9 \strokec9 =\cf5 \strokec5  d\cf9 \strokec9 .\cf5 \strokec5 descendants\cf9 \strokec9 ().\cf5 \strokec5 filter\cf9 \strokec9 (\cf5 \strokec5 n \cf9 \strokec9 =>\cf5 \strokec5  n\cf9 \strokec9 .\cf5 \strokec5 depth \cf9 \strokec9 ===\cf5 \strokec5  \cf13 \strokec13 3\cf9 \strokec9 ).\cf5 \strokec5 map\cf9 \strokec9 (\cf5 \strokec5 n \cf9 \strokec9 =>\cf5 \strokec5  n\cf9 \strokec9 .\cf5 \strokec5 data\cf9 \strokec9 .\cf5 \strokec5 name\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3                     userQuery \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 `Analyze the '\cf9 \strokec9 $\{\cf5 \strokec5 d\cf9 \strokec9 .\cf5 \strokec5 data\cf9 \strokec9 .\cf5 \strokec5 name\cf9 \strokec9 \}\cf10 \strokec10 ' team. Based on its responsibilities, write a 2-3 sentence summary of the team's core function. Responsibilities: \cf9 \strokec9 $\{\cf5 \strokec5 responsibilities\cf9 \strokec9 .\cf5 \strokec5 join\cf9 \strokec9 (\cf10 \strokec10 '; '\cf9 \strokec9 )\}\cf10 \strokec10 `\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 \}\cf5 \strokec5  \cf12 \strokec12 else\cf5 \strokec5  \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 d\cf9 \strokec9 .\cf5 \strokec5 depth \cf9 \strokec9 ===\cf5 \strokec5  \cf13 \strokec13 2\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  \cf8 \strokec8 // Person\cf5 \cb1 \strokec5 \
+\cb3                     nodeType \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 "Role"\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3                     \cf12 \strokec12 const\cf5 \strokec5  responsibilities \cf9 \strokec9 =\cf5 \strokec5  d\cf9 \strokec9 .\cf5 \strokec5 children\cf9 \strokec9 .\cf5 \strokec5 map\cf9 \strokec9 (\cf5 \strokec5 c \cf9 \strokec9 =>\cf5 \strokec5  c\cf9 \strokec9 .\cf5 \strokec5 data\cf9 \strokec9 .\cf5 \strokec5 name\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3                     userQuery \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 `Analyze the role of '\cf9 \strokec9 $\{\cf5 \strokec5 d\cf9 \strokec9 .\cf5 \strokec5 data\cf9 \strokec9 .\cf5 \strokec5 name\cf9 \strokec9 \}\cf10 \strokec10 '. Based on their responsibilities (\cf9 \strokec9 $\{\cf5 \strokec5 responsibilities\cf9 \strokec9 .\cf5 \strokec5 join\cf9 \strokec9 (\cf10 \strokec10 ', '\cf9 \strokec9 )\}\cf10 \strokec10 ), write a 2-3 sentence summary of their primary focus.`\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 \}\cf5 \strokec5  \cf12 \strokec12 else\cf5 \strokec5  \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 d\cf9 \strokec9 .\cf5 \strokec5 depth \cf9 \strokec9 ===\cf5 \strokec5  \cf13 \strokec13 3\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \strokec5  \cf8 \strokec8 // Responsibility\cf5 \cb1 \strokec5 \
+\cb3                     nodeType \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 "Task"\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3                     userQuery \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 `Analyze the task: '\cf9 \strokec9 $\{\cf5 \strokec5 d\cf9 \strokec9 .\cf5 \strokec5 data\cf9 \strokec9 .\cf5 \strokec5 name\cf9 \strokec9 \}\cf10 \strokec10 '. Briefly explain (1-2 sentences) what this responsibility likely entails and suggest one potential Key Performance Indicator (KPI) to measure its success.`\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 \}\cf5 \strokec5  \cf12 \strokec12 else\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                     closeModal\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
+\cb3                     \cf12 \strokec12 return\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\
+\cb3                 modalContent\cf9 \strokec9 .\cf5 \strokec5 innerHTML \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 `<h3 class="font-bold text-gray-800 mb-2">Analyzing \cf9 \strokec9 $\{\cf5 \strokec5 nodeType\cf9 \strokec9 \}\cf10 \strokec10 : \cf9 \strokec9 $\{\cf5 \strokec5 d\cf9 \strokec9 .\cf5 \strokec5 data\cf9 \strokec9 .\cf5 \strokec5 name\cf9 \strokec9 \}\cf10 \strokec10 </h3>`\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3                 \cb1 \
+\cb3                 \cf12 \strokec12 const\cf5 \strokec5  responseText \cf9 \strokec9 =\cf5 \strokec5  \cf12 \strokec12 await\cf5 \strokec5  callGeminiAPI\cf9 \strokec9 (\cf5 \strokec5 userQuery\cf9 \strokec9 ,\cf5 \strokec5  systemPrompt\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3                 \cb1 \
+\cb3                 \cf8 \strokec8 // Simple markdown-to-HTML\cf5 \cb1 \strokec5 \
+\cb3                 \cf12 \strokec12 let\cf5 \strokec5  htmlResponse \cf9 \strokec9 =\cf5 \strokec5  responseText\cb1 \
+\cb3                     \cf9 \strokec9 .\cf5 \strokec5 replace\cf9 \strokec9 (\cf15 \strokec15 /\\*\\*(.*?)\\*\\*/\cf12 \strokec12 g\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 '<strong>$1</strong>'\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3                     \cf9 \strokec9 .\cf5 \strokec5 replace\cf9 \strokec9 (\cf15 \strokec15 /\\n/\cf12 \strokec12 g\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 '<br>'\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\
+\cb3                 modalContent\cf9 \strokec9 .\cf5 \strokec5 innerHTML \cf9 \strokec9 +=\cf5 \strokec5  \cf10 \strokec10 `<div class="mt-2 text-gray-700">\cf9 \strokec9 $\{\cf5 \strokec5 htmlResponse\cf9 \strokec9 \}\cf10 \strokec10 </div>`\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\
+\cb3             \cf9 \strokec9 \}\cf5 \strokec5  \cf12 \strokec12 catch\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 error\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 console\cf9 \strokec9 .\cf5 \strokec5 error\cf9 \strokec9 (\cf10 \strokec10 "Gemini API call failed:"\cf9 \strokec9 ,\cf5 \strokec5  error\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3                 modalContent\cf9 \strokec9 .\cf5 \strokec5 innerHTML \cf9 \strokec9 +=\cf5 \strokec5  \cf10 \strokec10 "<p class='text-red-500 mt-2'>Sorry, the analysis failed. Please try again later.</p>"\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \}\cf5 \strokec5  \cf12 \strokec12 finally\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 modalLoading\cf9 \strokec9 .\cf5 \strokec5 style\cf9 \strokec9 .\cf5 \strokec5 display \cf9 \strokec9 =\cf5 \strokec5  \cf10 \strokec10 'none'\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\
+\
+\cb3         \cf8 \strokec8 // Raw data from the user's table\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  rawData \cf9 \strokec9 =\cf5 \strokec5  \cf9 \strokec9 [\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \{\cf5 \strokec5  \cf10 \strokec10 "Area"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Performance & Tech"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Person"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "M\'e1rcio"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Responsibility"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Analytics stack, link tagging, dashboards, weekly QA"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Backup"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Bruno"\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \{\cf5 \strokec5  \cf10 \strokec10 "Area"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Performance & Tech"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Person"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Bruno"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Responsibility"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "User newsletter (final send), Champion payouts, reporting"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Backup"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Geraldo"\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \{\cf5 \strokec5  \cf10 \strokec10 "Area"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Publishing & Editorial"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Person"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Anastasia"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Responsibility"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Social publishing, calendars, Hootsuite library, LinkedIn newsletter"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Backup"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "MOIC \'b7 Geraldo"\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \{\cf5 \strokec5  \cf10 \strokec10 "Area"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Publishing & Editorial"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Person"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Ester (external)"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Responsibility"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Editorial lead (TradeDesk copy, reports, style)"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Backup"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Everton"\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \{\cf5 \strokec5  \cf10 \strokec10 "Area"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Publishing & Editorial"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Person"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Everton"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Responsibility"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Blog drafts, long-form, supports weekly user newsletter"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Backup"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Ester"\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \{\cf5 \strokec5  \cf10 \strokec10 "Area"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Video & Design"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Person"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Andr\'e9 Leiria"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Responsibility"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Daily 60s videos, scripting, edits, cross-cuts; build a tight editing squad"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Backup"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Djinn"\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \{\cf5 \strokec5  \cf10 \strokec10 "Area"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Video & Design"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Person"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "MOIC"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Responsibility"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Visual identity, motion, sticker/overlay kits, thumbnails"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Backup"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Anastasia"\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \{\cf5 \strokec5  \cf10 \strokec10 "Area"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Community"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Person"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Carol"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Responsibility"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Host: 2 Spaces/week + weekly podcast; face of Base XYZ"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Backup"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Fl\'e1via \'b7 Mello \'b7 Geraldo"\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \{\cf5 \strokec5  \cf10 \strokec10 "Area"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Community"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Person"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Fl\'e1via"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Responsibility"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Moderation; real stories (wins that changed lives); UGC guidelines"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Backup"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Carol"\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \{\cf5 \strokec5  \cf10 \strokec10 "Area"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Community"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Person"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Mello"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Responsibility"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Trains Super Champions and their squads; QA for creator output"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Backup"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Carol"\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \{\cf5 \strokec5  \cf10 \strokec10 "Area"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "UGC Ops"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Person"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Geraldo"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Responsibility"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Circle.so ops: briefs, forms, weekly proof intake, prize logistics"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Backup"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Anastasia"\cf5 \strokec5  \cf9 \strokec9 \},\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \{\cf5 \strokec5  \cf10 \strokec10 "Area"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Research"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Person"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Geraldo"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Responsibility"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Competitive landscape, Similarweb feeds"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "Backup"\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Ester"\cf5 \strokec5  \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 ];\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 // --- 1. Process Data ---\cf5 \cb1 \strokec5 \
+\cb3         \cf8 \strokec8 // Create the nested structure (hierarchy)\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  hierarchyData \cf9 \strokec9 =\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             name\cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "Team Responsibilities"\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3             children\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 []\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \};\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  areaMap \cf9 \strokec9 =\cf5 \strokec5  \cf12 \strokec12 new\cf5 \strokec5  \cf14 \strokec14 Map\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
+\
+\cb3         rawData\cf9 \strokec9 .\cf5 \strokec5 forEach\cf9 \strokec9 (\cf5 \strokec5 item \cf9 \strokec9 =>\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (!\cf5 \strokec5 areaMap\cf9 \strokec9 .\cf5 \strokec5 has\cf9 \strokec9 (\cf5 \strokec5 item\cf9 \strokec9 .\cf14 \strokec14 Area\cf9 \strokec9 ))\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 areaMap\cf9 \strokec9 .\cf12 \strokec12 set\cf9 \strokec9 (\cf5 \strokec5 item\cf9 \strokec9 .\cf14 \strokec14 Area\cf9 \strokec9 ,\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                     name\cf9 \strokec9 :\cf5 \strokec5  item\cf9 \strokec9 .\cf14 \strokec14 Area\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     children\cf9 \strokec9 :\cf5 \strokec5  \cf12 \strokec12 new\cf5 \strokec5  \cf14 \strokec14 Map\cf9 \strokec9 ()\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3             \cf12 \strokec12 const\cf5 \strokec5  areaNode \cf9 \strokec9 =\cf5 \strokec5  areaMap\cf9 \strokec9 .\cf12 \strokec12 get\cf9 \strokec9 (\cf5 \strokec5 item\cf9 \strokec9 .\cf14 \strokec14 Area\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\
+\cb3             \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (!\cf5 \strokec5 areaNode\cf9 \strokec9 .\cf5 \strokec5 children\cf9 \strokec9 .\cf5 \strokec5 has\cf9 \strokec9 (\cf5 \strokec5 item\cf9 \strokec9 .\cf14 \strokec14 Person\cf9 \strokec9 ))\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 areaNode\cf9 \strokec9 .\cf5 \strokec5 children\cf9 \strokec9 .\cf12 \strokec12 set\cf9 \strokec9 (\cf5 \strokec5 item\cf9 \strokec9 .\cf14 \strokec14 Person\cf9 \strokec9 ,\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                     name\cf9 \strokec9 :\cf5 \strokec5  item\cf9 \strokec9 .\cf14 \strokec14 Person\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                     children\cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 []\cf5 \cb1 \strokec5 \
+\cb3                 \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \}\cf5 \cb1 \strokec5 \
+\cb3             \cf12 \strokec12 const\cf5 \strokec5  personNode \cf9 \strokec9 =\cf5 \strokec5  areaNode\cf9 \strokec9 .\cf5 \strokec5 children\cf9 \strokec9 .\cf12 \strokec12 get\cf9 \strokec9 (\cf5 \strokec5 item\cf9 \strokec9 .\cf14 \strokec14 Person\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\
+\cb3             personNode\cf9 \strokec9 .\cf5 \strokec5 children\cf9 \strokec9 .\cf5 \strokec5 push\cf9 \strokec9 (\{\cf5 \cb1 \strokec5 \
+\cb3                 name\cf9 \strokec9 :\cf5 \strokec5  item\cf9 \strokec9 .\cf14 \strokec14 Responsibility\cf9 \strokec9 ,\cf5 \cb1 \strokec5 \
+\cb3                 \cf8 \strokec8 // We can add more data here if needed, e.g., Backup\cf5 \cb1 \strokec5 \
+\cb3                 backup\cf9 \strokec9 :\cf5 \strokec5  item\cf9 \strokec9 .\cf14 \strokec14 Backup\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 // Convert Maps to Arrays for D3\cf5 \cb1 \strokec5 \
+\cb3         areaMap\cf9 \strokec9 .\cf5 \strokec5 forEach\cf9 \strokec9 (\cf5 \strokec5 areaNode \cf9 \strokec9 =>\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3             areaNode\cf9 \strokec9 .\cf5 \strokec5 children \cf9 \strokec9 =\cf5 \strokec5  \cf14 \strokec14 Array\cf9 \strokec9 .\cf12 \strokec12 from\cf9 \strokec9 (\cf5 \strokec5 areaNode\cf9 \strokec9 .\cf5 \strokec5 children\cf9 \strokec9 .\cf5 \strokec5 values\cf9 \strokec9 ());\cf5 \cb1 \strokec5 \
+\cb3             hierarchyData\cf9 \strokec9 .\cf5 \strokec5 children\cf9 \strokec9 .\cf5 \strokec5 push\cf9 \strokec9 (\cf5 \strokec5 areaNode\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3         \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 // --- 2. D3 Setup ---\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  svg \cf9 \strokec9 =\cf5 \strokec5  d3\cf9 \strokec9 .\cf5 \strokec5 select\cf9 \strokec9 (\cf10 \strokec10 "#org-chart"\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  svgElement \cf9 \strokec9 =\cf5 \strokec5  svg\cf9 \strokec9 .\cf5 \strokec5 node\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  container \cf9 \strokec9 =\cf5 \strokec5  svgElement\cf9 \strokec9 .\cf5 \strokec5 parentNode\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 // Get container dimensions\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  width \cf9 \strokec9 =\cf5 \strokec5  container\cf9 \strokec9 .\cf5 \strokec5 clientWidth\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  height \cf9 \strokec9 =\cf5 \strokec5  container\cf9 \strokec9 .\cf5 \strokec5 clientHeight\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 // Create the root group (g)\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  g \cf9 \strokec9 =\cf5 \strokec5  svg\cf9 \strokec9 .\cf5 \strokec5 append\cf9 \strokec9 (\cf10 \strokec10 "g"\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 attr\cf9 \strokec9 (\cf10 \strokec10 "transform"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 `translate(120, 20)`\cf9 \strokec9 );\cf5 \strokec5  \cf8 \strokec8 // Start with padding\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 // --- 3. Create Layout ---\cf5 \cb1 \strokec5 \
+\cb3         \cf8 \strokec8 // Create the D3 tree layout generator\cf5 \cb1 \strokec5 \
+\cb3         \cf8 \strokec8 // This calculates the (x, y) position for each node\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  treeLayout \cf9 \strokec9 =\cf5 \strokec5  d3\cf9 \strokec9 .\cf5 \strokec5 tree\cf9 \strokec9 ()\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 nodeSize\cf9 \strokec9 ([\cf13 \strokec13 25\cf9 \strokec9 ,\cf5 \strokec5  \cf13 \strokec13 300\cf9 \strokec9 ]);\cf5 \strokec5  \cf8 \strokec8 // [vertical spacing, horizontal spacing]\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 // Create the root node from our hierarchical data\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  root \cf9 \strokec9 =\cf5 \strokec5  d3\cf9 \strokec9 .\cf5 \strokec5 hierarchy\cf9 \strokec9 (\cf5 \strokec5 hierarchyData\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 // Apply the layout\cf5 \cb1 \strokec5 \
+\cb3         treeLayout\cf9 \strokec9 (\cf5 \strokec5 root\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 // --- 4. Render Links ---\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  linkGenerator \cf9 \strokec9 =\cf5 \strokec5  d3\cf9 \strokec9 .\cf5 \strokec5 linkHorizontal\cf9 \strokec9 ()\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 x\cf9 \strokec9 (\cf5 \strokec5 d \cf9 \strokec9 =>\cf5 \strokec5  d\cf9 \strokec9 .\cf5 \strokec5 y\cf9 \strokec9 )\cf5 \strokec5  \cf8 \strokec8 // D3 tree layout swaps x and y\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 y\cf9 \strokec9 (\cf5 \strokec5 d \cf9 \strokec9 =>\cf5 \strokec5  d\cf9 \strokec9 .\cf5 \strokec5 x\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\
+\cb3         g\cf9 \strokec9 .\cf5 \strokec5 append\cf9 \strokec9 (\cf10 \strokec10 "g"\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 attr\cf9 \strokec9 (\cf10 \strokec10 "class"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "links"\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 selectAll\cf9 \strokec9 (\cf10 \strokec10 "path"\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 data\cf9 \strokec9 (\cf5 \strokec5 root\cf9 \strokec9 .\cf5 \strokec5 links\cf9 \strokec9 ())\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 join\cf9 \strokec9 (\cf10 \strokec10 "path"\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 attr\cf9 \strokec9 (\cf10 \strokec10 "class"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "link"\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 attr\cf9 \strokec9 (\cf10 \strokec10 "d"\cf9 \strokec9 ,\cf5 \strokec5  linkGenerator\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 // --- 4. Render Nodes ---\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  node \cf9 \strokec9 =\cf5 \strokec5  g\cf9 \strokec9 .\cf5 \strokec5 append\cf9 \strokec9 (\cf10 \strokec10 "g"\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 attr\cf9 \strokec9 (\cf10 \strokec10 "class"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "nodes"\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 selectAll\cf9 \strokec9 (\cf10 \strokec10 "g"\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 data\cf9 \strokec9 (\cf5 \strokec5 root\cf9 \strokec9 .\cf5 \strokec5 descendants\cf9 \strokec9 ())\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 join\cf9 \strokec9 (\cf10 \strokec10 "g"\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 attr\cf9 \strokec9 (\cf10 \strokec10 "class"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "node"\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 attr\cf9 \strokec9 (\cf10 \strokec10 "transform"\cf9 \strokec9 ,\cf5 \strokec5  d \cf9 \strokec9 =>\cf5 \strokec5  \cf10 \strokec10 `translate(\cf9 \strokec9 $\{\cf5 \strokec5 d\cf9 \strokec9 .\cf5 \strokec5 y\cf9 \strokec9 \}\cf10 \strokec10 ,\cf9 \strokec9 $\{\cf5 \strokec5 d\cf9 \strokec9 .\cf5 \strokec5 x\cf9 \strokec9 \}\cf10 \strokec10 )`\cf9 \strokec9 )\cf5 \strokec5  \cf8 \strokec8 // D3 tree layout swaps x and y\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 on\cf9 \strokec9 (\cf10 \strokec10 "click"\cf9 \strokec9 ,\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 event\cf9 \strokec9 ,\cf5 \strokec5  d\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 =>\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 \cf8 \strokec8 // Prevent click from firing on zoom/drag\cf5 \cb1 \strokec5 \
+\cb3                 \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 event\cf9 \strokec9 .\cf5 \strokec5 defaultPrevented\cf9 \strokec9 )\cf5 \strokec5  \cf12 \strokec12 return\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3                 showGeminiAnalysis\cf9 \strokec9 (\cf5 \strokec5 d\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
+\
+\cb3         node\cf9 \strokec9 .\cf5 \strokec5 append\cf9 \strokec9 (\cf10 \strokec10 "circle"\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 attr\cf9 \strokec9 (\cf10 \strokec10 "r"\cf9 \strokec9 ,\cf5 \strokec5  \cf13 \strokec13 5\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 attr\cf9 \strokec9 (\cf10 \strokec10 "fill"\cf9 \strokec9 ,\cf5 \strokec5  d \cf9 \strokec9 =>\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 d\cf9 \strokec9 .\cf5 \strokec5 depth \cf9 \strokec9 ===\cf5 \strokec5  \cf13 \strokec13 0\cf9 \strokec9 )\cf5 \strokec5  \cf12 \strokec12 return\cf5 \strokec5  \cf10 \strokec10 "#1e3a8a"\cf9 \strokec9 ;\cf5 \strokec5  \cf8 \strokec8 // blue-900 (Root)\cf5 \cb1 \strokec5 \
+\cb3                 \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 d\cf9 \strokec9 .\cf5 \strokec5 depth \cf9 \strokec9 ===\cf5 \strokec5  \cf13 \strokec13 1\cf9 \strokec9 )\cf5 \strokec5  \cf12 \strokec12 return\cf5 \strokec5  \cf10 \strokec10 "#1d4ed8"\cf9 \strokec9 ;\cf5 \strokec5  \cf8 \strokec8 // blue-700 (Area)\cf5 \cb1 \strokec5 \
+\cb3                 \cf12 \strokec12 if\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 d\cf9 \strokec9 .\cf5 \strokec5 depth \cf9 \strokec9 ===\cf5 \strokec5  \cf13 \strokec13 2\cf9 \strokec9 )\cf5 \strokec5  \cf12 \strokec12 return\cf5 \strokec5  \cf10 \strokec10 "#3b82f6"\cf9 \strokec9 ;\cf5 \strokec5  \cf8 \strokec8 // blue-500 (Person)\cf5 \cb1 \strokec5 \
+\cb3                 \cf12 \strokec12 return\cf5 \strokec5  \cf10 \strokec10 "#60a5fa"\cf9 \strokec9 ;\cf5 \strokec5  \cf8 \strokec8 // blue-400 (Responsibility)\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \})\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 attr\cf9 \strokec9 (\cf10 \strokec10 "stroke"\cf9 \strokec9 ,\cf5 \strokec5  d \cf9 \strokec9 =>\cf5 \strokec5  d\cf9 \strokec9 .\cf5 \strokec5 children \cf9 \strokec9 ?\cf5 \strokec5  \cf10 \strokec10 "#1e3a8a"\cf5 \strokec5  \cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "#3b82f6"\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 attr\cf9 \strokec9 (\cf10 \strokec10 "stroke-width"\cf9 \strokec9 ,\cf5 \strokec5  \cf13 \strokec13 1.5\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 // --- 5. Add Text Labels ---\cf5 \cb1 \strokec5 \
+\cb3         node\cf9 \strokec9 .\cf5 \strokec5 append\cf9 \strokec9 (\cf10 \strokec10 "text"\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 text\cf9 \strokec9 (\cf5 \strokec5 d \cf9 \strokec9 =>\cf5 \strokec5  d\cf9 \strokec9 .\cf5 \strokec5 data\cf9 \strokec9 .\cf5 \strokec5 name\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 attr\cf9 \strokec9 (\cf10 \strokec10 "dy"\cf9 \strokec9 ,\cf5 \strokec5  \cf10 \strokec10 "0.32em"\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 attr\cf9 \strokec9 (\cf10 \strokec10 "x"\cf9 \strokec9 ,\cf5 \strokec5  d \cf9 \strokec9 =>\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 \cf8 \strokec8 // For the last nodes (responsibilities), text is to the right\cf5 \cb1 \strokec5 \
+\cb3                 \cf8 \strokec8 // For all other nodes, text is to the left\cf5 \cb1 \strokec5 \
+\cb3                 \cf12 \strokec12 return\cf5 \strokec5  d\cf9 \strokec9 .\cf5 \strokec5 depth \cf9 \strokec9 ===\cf5 \strokec5  \cf13 \strokec13 3\cf5 \strokec5  \cf9 \strokec9 ?\cf5 \strokec5  \cf13 \strokec13 10\cf5 \strokec5  \cf9 \strokec9 :\cf5 \strokec5  \cf9 \strokec9 -\cf13 \strokec13 10\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \})\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 style\cf9 \strokec9 (\cf10 \strokec10 "text-anchor"\cf9 \strokec9 ,\cf5 \strokec5  d \cf9 \strokec9 =>\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 \cf12 \strokec12 return\cf5 \strokec5  d\cf9 \strokec9 .\cf5 \strokec5 depth \cf9 \strokec9 ===\cf5 \strokec5  \cf13 \strokec13 3\cf5 \strokec5  \cf9 \strokec9 ?\cf5 \strokec5  \cf10 \strokec10 "start"\cf5 \strokec5  \cf9 \strokec9 :\cf5 \strokec5  \cf10 \strokec10 "end"\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
+\
+\cb3         \cf8 \strokec8 // --- Tooltip ---\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  tooltip \cf9 \strokec9 =\cf5 \strokec5  d3\cf9 \strokec9 .\cf5 \strokec5 select\cf9 \strokec9 (\cf10 \strokec10 "#tooltip"\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\
+\cb3         node\cf9 \strokec9 .\cf5 \strokec5 on\cf9 \strokec9 (\cf10 \strokec10 "mouseover"\cf9 \strokec9 ,\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 event\cf9 \strokec9 ,\cf5 \strokec5  d\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 =>\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 \cf8 \strokec8 // Get the full name, truncate if necessary for the label, but show full in tooltip\cf5 \cb1 \strokec5 \
+\cb3                 \cf12 \strokec12 let\cf5 \strokec5  name \cf9 \strokec9 =\cf5 \strokec5  d\cf9 \strokec9 .\cf5 \strokec5 data\cf9 \strokec9 .\cf5 \strokec5 name\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3                 tooltip\cf9 \strokec9 .\cf5 \strokec5 style\cf9 \strokec9 (\cf10 \strokec10 "opacity"\cf9 \strokec9 ,\cf5 \strokec5  \cf13 \strokec13 1\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3                     \cf9 \strokec9 .\cf5 \strokec5 html\cf9 \strokec9 (\cf5 \strokec5 name\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3                     \cf9 \strokec9 .\cf5 \strokec5 style\cf9 \strokec9 (\cf10 \strokec10 "left"\cf9 \strokec9 ,\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 event\cf9 \strokec9 .\cf5 \strokec5 pageX \cf9 \strokec9 +\cf5 \strokec5  \cf13 \strokec13 15\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 +\cf5 \strokec5  \cf10 \strokec10 "px"\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3                     \cf9 \strokec9 .\cf5 \strokec5 style\cf9 \strokec9 (\cf10 \strokec10 "top"\cf9 \strokec9 ,\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 event\cf9 \strokec9 .\cf5 \strokec5 pageY \cf9 \strokec9 -\cf5 \strokec5  \cf13 \strokec13 28\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 +\cf5 \strokec5  \cf10 \strokec10 "px"\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \})\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 on\cf9 \strokec9 (\cf10 \strokec10 "mousemove"\cf9 \strokec9 ,\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 event\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 =>\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 tooltip\cf9 \strokec9 .\cf5 \strokec5 style\cf9 \strokec9 (\cf10 \strokec10 "left"\cf9 \strokec9 ,\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 event\cf9 \strokec9 .\cf5 \strokec5 pageX \cf9 \strokec9 +\cf5 \strokec5  \cf13 \strokec13 15\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 +\cf5 \strokec5  \cf10 \strokec10 "px"\cf9 \strokec9 )\cf5 \cb1 \strokec5 \
+\cb3                     \cf9 \strokec9 .\cf5 \strokec5 style\cf9 \strokec9 (\cf10 \strokec10 "top"\cf9 \strokec9 ,\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 event\cf9 \strokec9 .\cf5 \strokec5 pageY \cf9 \strokec9 -\cf5 \strokec5  \cf13 \strokec13 28\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 +\cf5 \strokec5  \cf10 \strokec10 "px"\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \})\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 on\cf9 \strokec9 (\cf10 \strokec10 "mouseout"\cf9 \strokec9 ,\cf5 \strokec5  \cf9 \strokec9 ()\cf5 \strokec5  \cf9 \strokec9 =>\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 tooltip\cf9 \strokec9 .\cf5 \strokec5 style\cf9 \strokec9 (\cf10 \strokec10 "opacity"\cf9 \strokec9 ,\cf5 \strokec5  \cf13 \strokec13 0\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
+\cb3             \cb1 \
+\cb3         \cf8 \strokec8 // --- 6. Zoom & Pan ---\cf5 \cb1 \strokec5 \
+\cb3         \cf8 \strokec8 // Automatically adjust the view to fit the entire tree\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  bounds \cf9 \strokec9 =\cf5 \strokec5  g\cf9 \strokec9 .\cf5 \strokec5 node\cf9 \strokec9 ().\cf5 \strokec5 getBBox\cf9 \strokec9 ();\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  fullWidth \cf9 \strokec9 =\cf5 \strokec5  bounds\cf9 \strokec9 .\cf5 \strokec5 width\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  fullHeight \cf9 \strokec9 =\cf5 \strokec5  bounds\cf9 \strokec9 .\cf5 \strokec5 height\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3         \cb1 \
+\cb3         \cf8 \strokec8 // Calculate dynamic height based on number of final nodes (responsibilities)\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  numResponsibilities \cf9 \strokec9 =\cf5 \strokec5  root\cf9 \strokec9 .\cf5 \strokec5 descendants\cf9 \strokec9 ().\cf5 \strokec5 filter\cf9 \strokec9 (\cf5 \strokec5 d \cf9 \strokec9 =>\cf5 \strokec5  d\cf9 \strokec9 .\cf5 \strokec5 depth \cf9 \strokec9 ===\cf5 \strokec5  \cf13 \strokec13 3\cf9 \strokec9 ).\cf5 \strokec5 length\cf9 \strokec9 ;\cf5 \cb1 \strokec5 \
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  dynamicHeight \cf9 \strokec9 =\cf5 \strokec5  \cf14 \strokec14 Math\cf9 \strokec9 .\cf5 \strokec5 max\cf9 \strokec9 (\cf5 \strokec5 height\cf9 \strokec9 ,\cf5 \strokec5  numResponsibilities \cf9 \strokec9 *\cf5 \strokec5  \cf13 \strokec13 25\cf5 \strokec5  \cf9 \strokec9 +\cf5 \strokec5  \cf13 \strokec13 40\cf9 \strokec9 );\cf5 \strokec5  \cf8 \strokec8 // 25px per node + 40px padding\cf5 \cb1 \strokec5 \
+\cb3         \cb1 \
+\cb3         svg\cf9 \strokec9 .\cf5 \strokec5 attr\cf9 \strokec9 (\cf10 \strokec10 "height"\cf9 \strokec9 ,\cf5 \strokec5  dynamicHeight\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3         \cb1 \
+\cb3         \cf8 \strokec8 // If zoom is desired, it requires a different setup.\cf5 \cb1 \strokec5 \
+\cb3         \cb1 \
+\cb3         \cb1 \
+\cb3         \cf12 \strokec12 const\cf5 \strokec5  zoom \cf9 \strokec9 =\cf5 \strokec5  d3\cf9 \strokec9 .\cf5 \strokec5 zoom\cf9 \strokec9 ()\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 scaleExtent\cf9 \strokec9 ([\cf13 \strokec13 0.5\cf9 \strokec9 ,\cf5 \strokec5  \cf13 \strokec13 3\cf9 \strokec9 ])\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 .\cf5 \strokec5 on\cf9 \strokec9 (\cf10 \strokec10 "zoom"\cf9 \strokec9 ,\cf5 \strokec5  \cf9 \strokec9 (\cf5 \strokec5 event\cf9 \strokec9 )\cf5 \strokec5  \cf9 \strokec9 =>\cf5 \strokec5  \cf9 \strokec9 \{\cf5 \cb1 \strokec5 \
+\cb3                 g\cf9 \strokec9 .\cf5 \strokec5 attr\cf9 \strokec9 (\cf10 \strokec10 "transform"\cf9 \strokec9 ,\cf5 \strokec5  event\cf9 \strokec9 .\cf5 \strokec5 transform\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3             \cf9 \strokec9 \});\cf5 \cb1 \strokec5 \
+\
+\cb3         svg\cf9 \strokec9 .\cf5 \strokec5 call\cf9 \strokec9 (\cf5 \strokec5 zoom\cf9 \strokec9 );\cf5 \cb1 \strokec5 \
+\cb3         \cf8 \strokec8 //svg.call(zoom.transform, d3.zoomIdentity);\cf5 \cb1 \strokec5 \
+\cb3         \cb1 \
+\
+\cb3     \cf6 \strokec6 </\cf2 \strokec2 script\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cf6 \cb3 \strokec6 </\cf2 \strokec2 body\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\cf6 \cb3 \strokec6 </\cf2 \strokec2 html\cf6 \strokec6 >\cf5 \cb1 \strokec5 \
+\
+\
+}

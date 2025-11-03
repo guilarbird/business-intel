@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Responsibilities Diagram</title>
+    <!-- Load D3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Use Inter font */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9; /* slate-100 */
+        }
+
+        /* Custom styles for the D3 chart */
+        .node circle {
+            cursor: pointer;
+            transition: all 0.2s ease-out;
+        }
+
+        .node:hover circle {
+            stroke-width: 3px;
+        }
+
+        .node text {
+            font-size: 11px;
+            font-weight: 500;
+            fill: #334155; /* slate-700 */
+            /* Add a subtle shadow for text readability */
+            paint-order: stroke;
+            stroke: #f8fafc; /* slate-50 */
+            stroke-width: 3px;
+            stroke-linecap: butt;
+            stroke-linejoin: miter;
+        }
+
+        .link {
+            fill: none;
+            stroke: #94a3b8; /* slate-400 */
+            stroke-opacity: 0.6;
+            stroke-width: 1.5px;
+        }
+
+        /* Tooltip style */
+        .tooltip {
+            position: absolute;
+            text-align: center;
+            padding: 8px 12px;
+            font-size: 12px;
+            background: #1e293b; /* slate-800 */
+            color: #f1f5f9; /* slate-100 */
+            border-radius: 6px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            max-width: 300px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="h-full flex items-center justify-center p-4 md:p-8 antialiased">
+
+    <div class="w-full max-w-7xl h-[80vh] bg-white rounded-lg shadow-xl p-4 overflow-auto">
+        <svg id="org-chart" class="w-full h-full min-w-[800px] min-h-[600px]"></svg>
+    </div>
+
+    <!-- Tooltip element -->
+    <div id="tooltip" class="tooltip"></div>
+
+    <!-- Gemini Modal -->
+    <div id="gemini-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 z-50 hidden" style="font-family: 'Inter', sans-serif;">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-lg p-6 relative">
+            <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 p-1 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <h2 class="text-lg font-bold text-gray-800 mb-4">✨ AI Analysis</h2>
+            
+            <div id="gemini-loading" class="text-center py-4 hidden">
+                <div class="flex justify-center items-center">
+                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <p class="text-gray-600">Analyzing... Please wait.</p>
+                </div>
+            </div>
+
+            <div id="gemini-content" class="text-gray-700 max-h-[60vh] overflow-y-auto prose prose-sm">
+                <!-- Response will be injected here -->
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // --- Modal Controls ---
+        const modal = document.getElementById('gemini-modal');
+        const modalContent = document.getElementById('gemini-content');
+        const modalLoading = document.getElementById('gemini-loading');
+
+        function openModal() {
+            modalContent.innerHTML = '';
+            modalLoading.style.display = 'block';
+            modal.style.display = 'flex';
+        }
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+        // Close modal if user clicks outside of the content
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // --- Gemini API ---
+        /**
+         * Calls the Gemini API with exponential backoff.
+         * @param {string} userQuery The user's prompt.
+         * @param {string} systemPrompt The system instruction.
+         * @returns {Promise<string>} The generated text.
+         */
+        async function callGeminiAPI(userQuery, systemPrompt) {
+            const apiKey = ""; // API key is handled by the environment
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                },
+            };
+
+            let response;
+            let retries = 0;
+            const maxRetries = 5;
+            let delay = 1000; // 1 second
+
+            while (retries < maxRetries) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        const candidate = result.candidates?.[0];
+                        if (candidate && candidate.content?.parts?.[0]?.text) {
+                            return candidate.content.parts[0].text;
+                        } else {
+                            throw new Error("Invalid API response structure.");
+                        }
+                    } else if (response.status === 429 || response.status >= 500) {
+                        // Throttling or server error, wait and retry
+                        console.warn(`Gemini API request failed with status ${response.status}. Retrying in ${delay}ms...`);
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        delay *= 2; // Exponential backoff
+                        retries++;
+                    } else {
+                        // Other client-side error
+                        const errorResult = await response.json();
+                        throw new Error(`API request failed: ${errorResult.error?.message || response.statusText}`);
+                    }
+                } catch (error) {
+                    if (retries >= maxRetries - 1) {
+                         throw error; // Throw error on last retry
+                    }
+                    console.warn(`Gemini API request failed: ${error.message}. Retrying in ${delay}ms...`);
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    delay *= 2;
+                    retries++;
+                }
+            }
+            throw new Error("Gemini API request failed after all retries.");
+        }
+
+        /**
+         * Handles the click event on a D3 node to show Gemini analysis.
+         * @param {object} d The D3 node data.
+         */
+        async function showGeminiAnalysis(d) {
+            openModal();
+            
+            const systemPrompt = "You are a helpful HR and team operations analyst. Your goal is to provide concise, insightful summaries based on organizational data. Be professional and clear. Format your response with simple markdown (bolding, lists).";
+            let userQuery = "";
+            let nodeType = "";
+
+            try {
+                if (d.depth === 0) { // Root
+                    nodeType = "Organization";
+                    userQuery = `Provide a brief, 2-sentence overview of the entire organization '${d.data.name}' based on its team areas: ${d.children.map(c => c.data.name).join(', ')}.`;
+                } else if (d.depth === 1) { // Area
+                    nodeType = "Team Area";
+                    const responsibilities = d.descendants().filter(n => n.depth === 3).map(n => n.data.name);
+                    userQuery = `Analyze the '${d.data.name}' team. Based on its responsibilities, write a 2-3 sentence summary of the team's core function. Responsibilities: ${responsibilities.join('; ')}`;
+                } else if (d.depth === 2) { // Person
+                    nodeType = "Role";
+                    const responsibilities = d.children.map(c => c.data.name);
+                    userQuery = `Analyze the role of '${d.data.name}'. Based on their responsibilities (${responsibilities.join(', ')}), write a 2-3 sentence summary of their primary focus.`;
+                } else if (d.depth === 3) { // Responsibility
+                    nodeType = "Task";
+                    userQuery = `Analyze the task: '${d.data.name}'. Briefly explain (1-2 sentences) what this responsibility likely entails and suggest one potential Key Performance Indicator (KPI) to measure its success.`;
+                } else {
+                    closeModal();
+                    return;
+                }
+
+                modalContent.innerHTML = `<h3 class="font-bold text-gray-800 mb-2">Analyzing ${nodeType}: ${d.data.name}</h3>`;
+                
+                const responseText = await callGeminiAPI(userQuery, systemPrompt);
+                
+                // Simple markdown-to-HTML
+                let htmlResponse = responseText
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\n/g, '<br>');
+
+                modalContent.innerHTML += `<div class="mt-2 text-gray-700">${htmlResponse}</div>`;
+
+            } catch (error) {
+                console.error("Gemini API call failed:", error);
+                modalContent.innerHTML += "<p class='text-red-500 mt-2'>Sorry, the analysis failed. Please try again later.</p>";
+            } finally {
+                modalLoading.style.display = 'none';
+            }
+        }
+
+
+        // Raw data from the user's table
+        const rawData = [
+            { "Area": "Performance & Tech", "Person": "Márcio", "Responsibility": "Analytics stack, link tagging, dashboards, weekly QA", "Backup": "Bruno" },
+            { "Area": "Performance & Tech", "Person": "Bruno", "Responsibility": "User newsletter (final send), Champion payouts, reporting", "Backup": "Geraldo" },
+            { "Area": "Publishing & Editorial", "Person": "Anastasia", "Responsibility": "Social publishing, calendars, Hootsuite library, LinkedIn newsletter", "Backup": "MOIC · Geraldo" },
+            { "Area": "Publishing & Editorial", "Person": "Ester (external)", "Responsibility": "Editorial lead (TradeDesk copy, reports, style)", "Backup": "Everton" },
+            { "Area": "Publishing & Editorial", "Person": "Everton", "Responsibility": "Blog drafts, long-form, supports weekly user newsletter", "Backup": "Ester" },
+            { "Area": "Video & Design", "Person": "André Leiria", "Responsibility": "Daily 60s videos, scripting, edits, cross-cuts; build a tight editing squad", "Backup": "Djinn" },
+            { "Area": "Video & Design", "Person": "MOIC", "Responsibility": "Visual identity, motion, sticker/overlay kits, thumbnails", "Backup": "Anastasia" },
+            { "Area": "Community", "Person": "Carol", "Responsibility": "Host: 2 Spaces/week + weekly podcast; face of Base XYZ", "Backup": "Flávia · Mello · Geraldo" },
+            { "Area": "Community", "Person": "Flávia", "Responsibility": "Moderation; real stories (wins that changed lives); UGC guidelines", "Backup": "Carol" },
+            { "Area": "Community", "Person": "Mello", "Responsibility": "Trains Super Champions and their squads; QA for creator output", "Backup": "Carol" },
+            { "Area": "UGC Ops", "Person": "Geraldo", "Responsibility": "Circle.so ops: briefs, forms, weekly proof intake, prize logistics", "Backup": "Anastasia" },
+            { "Area": "Research", "Person": "Geraldo", "Responsibility": "Competitive landscape, Similarweb feeds", "Backup": "Ester" }
+        ];
+
+        // --- 1. Process Data ---
+        // Create the nested structure (hierarchy)
+        const hierarchyData = {
+            name: "Team Responsibilities",
+            children: []
+        };
+
+        const areaMap = new Map();
+
+        rawData.forEach(item => {
+            if (!areaMap.has(item.Area)) {
+                areaMap.set(item.Area, {
+                    name: item.Area,
+                    children: new Map()
+                });
+            }
+            const areaNode = areaMap.get(item.Area);
+
+            if (!areaNode.children.has(item.Person)) {
+                areaNode.children.set(item.Person, {
+                    name: item.Person,
+                    children: []
+                });
+            }
+            const personNode = areaNode.children.get(item.Person);
+
+            personNode.children.push({
+                name: item.Responsibility,
+                // We can add more data here if needed, e.g., Backup
+                backup: item.Backup
+            });
+        });
+
+        // Convert Maps to Arrays for D3
+        areaMap.forEach(areaNode => {
+            areaNode.children = Array.from(areaNode.children.values());
+            hierarchyData.children.push(areaNode);
+        });
+
+        // --- 2. D3 Setup ---
+        const svg = d3.select("#org-chart");
+        const svgElement = svg.node();
+        const container = svgElement.parentNode;
+
+        // Get container dimensions
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+
+        // Create the root group (g)
+        const g = svg.append("g")
+            .attr("transform", `translate(120, 20)`); // Start with padding
+
+        // --- 3. Create Layout ---
+        // Create the D3 tree layout generator
+        // This calculates the (x, y) position for each node
+        const treeLayout = d3.tree()
+            .nodeSize([25, 300]); // [vertical spacing, horizontal spacing]
+
+        // Create the root node from our hierarchical data
+        const root = d3.hierarchy(hierarchyData);
+
+        // Apply the layout
+        treeLayout(root);
+
+        // --- 4. Render Links ---
+        const linkGenerator = d3.linkHorizontal()
+            .x(d => d.y) // D3 tree layout swaps x and y
+            .y(d => d.x);
+
+        g.append("g")
+            .attr("class", "links")
+            .selectAll("path")
+            .data(root.links())
+            .join("path")
+            .attr("class", "link")
+            .attr("d", linkGenerator);
+
+        // --- 4. Render Nodes ---
+        const node = g.append("g")
+            .attr("class", "nodes")
+            .selectAll("g")
+            .data(root.descendants())
+            .join("g")
+            .attr("class", "node")
+            .attr("transform", d => `translate(${d.y},${d.x})`) // D3 tree layout swaps x and y
+            .on("click", (event, d) => {
+                // Prevent click from firing on zoom/drag
+                if (event.defaultPrevented) return;
+                showGeminiAnalysis(d);
+            });
+
+        node.append("circle")
+            .attr("r", 5)
+            .attr("fill", d => {
+                if (d.depth === 0) return "#1e3a8a"; // blue-900 (Root)
+                if (d.depth === 1) return "#1d4ed8"; // blue-700 (Area)
+                if (d.depth === 2) return "#3b82f6"; // blue-500 (Person)
+                return "#60a5fa"; // blue-400 (Responsibility)
+            })
+            .attr("stroke", d => d.children ? "#1e3a8a" : "#3b82f6")
+            .attr("stroke-width", 1.5);
+
+        // --- 5. Add Text Labels ---
+        node.append("text")
+            .text(d => d.data.name)
+            .attr("dy", "0.32em")
+            .attr("x", d => {
+                // For the last nodes (responsibilities), text is to the right
+                // For all other nodes, text is to the left
+                return d.depth === 3 ? 10 : -10;
+            })
+            .style("text-anchor", d => {
+                return d.depth === 3 ? "start" : "end";
+            });
+
+        // --- Tooltip ---
+        const tooltip = d3.select("#tooltip");
+
+        node.on("mouseover", (event, d) => {
+                // Get the full name, truncate if necessary for the label, but show full in tooltip
+                let name = d.data.name;
+                tooltip.style("opacity", 1)
+                    .html(name)
+                    .style("left", (event.pageX + 15) + "px")
+                    .style("top", (event.pageY - 28) + "px");
+            })
+            .on("mousemove", (event) => {
+                tooltip.style("left", (event.pageX + 15) + "px")
+                    .style("top", (event.pageY - 28) + "px");
+            })
+            .on("mouseout", () => {
+                tooltip.style("opacity", 0);
+            });
+            
+        // --- 6. Zoom & Pan ---
+        // Automatically adjust the view to fit the entire tree
+        const bounds = g.node().getBBox();
+        const fullWidth = bounds.width;
+        const fullHeight = bounds.height;
+        
+        // Calculate dynamic height based on number of final nodes (responsibilities)
+        const numResponsibilities = root.descendants().filter(d => d.depth === 3).length;
+        const dynamicHeight = Math.max(height, numResponsibilities * 25 + 40); // 25px per node + 40px padding
+        
+        svg.attr("height", dynamicHeight);
+        
+        // If zoom is desired, it requires a different setup.
+        
+        
+        const zoom = d3.zoom()
+            .scaleExtent([0.5, 3])
+            .on("zoom", (event) => {
+                g.attr("transform", event.transform);
+            });
+
+        svg.call(zoom);
+        //svg.call(zoom.transform, d3.zoomIdentity);
+        
+
+    </script>
+</body>
+</html>
